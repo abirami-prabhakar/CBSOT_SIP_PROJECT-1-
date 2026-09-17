@@ -4,7 +4,7 @@ An end-to-end, production-ready Machine Learning system built on the canonical I
 
 ---
 
-## 📌 Project Overview
+##  Project Overview
 
 Customer churn poses a significant threat to subscription and telecommunication businesses. This project addresses churn prevention through a dual-perspective machine learning pipeline:
 1. **Unsupervised Customer Segmentation (K-Means):** Identifies distinct subscriber personas based on customer lifecycle tenure and spending patterns to inform personalized marketing and retention programs.
@@ -13,7 +13,7 @@ Customer churn poses a significant threat to subscription and telecommunication 
 
 ---
 
-## 🏛️ System Architecture
+##  System Architecture
 
 ```text
                ┌──────────────────────────────────────────────┐
@@ -63,7 +63,7 @@ Customer churn poses a significant threat to subscription and telecommunication 
 
 ---
 
-## 📊 Dataset & Preprocessing
+##  Dataset & Preprocessing
 
 ### Dataset Schema
 * **Source:** IBM Telco Customer Churn dataset (7,043 subscriber records, 21 columns).
@@ -78,12 +78,15 @@ Customer churn poses a significant threat to subscription and telecommunication 
 
 ---
 
-## 👥 Customer Segmentation (K-Means)
+##  Customer Segmentation (K-Means)
 
 Clustering is applied to scaled behavioral spending features: `tenure`, `MonthlyCharges`, and `TotalCharges`.
 
 ### Elbow Method Analysis
 The Within-Cluster Sum of Squares (Inertia) was calculated across $K=1 \dots 10$. The curve reveals an elbow at **$K=4$**, yielding four operationally distinct segments with stark differences in retention behavior:
+
+<img width="1191" height="707" alt="image" src="https://github.com/user-attachments/assets/1154c813-17df-450b-acd4-ffcab1e6a10b" />
+
 
 ### Empirical Cluster Statistics (Actual Dataset)
 
@@ -98,7 +101,8 @@ The Within-Cluster Sum of Squares (Inertia) was calculated across $K=1 \dots 10$
 
 ---
 
-## 🤖 Churn Prediction Model (Random Forest)
+
+##  Churn Prediction Model (Random Forest)
 
 ### Training & Hyperparameter Tuning
 * **Algorithm:** `RandomForestClassifier`
@@ -134,7 +138,10 @@ The Within-Cluster Sum of Squares (Inertia) was calculated across $K=1 \dots 10$
 
 ---
 
-## 🔍 Top Predictive Drivers (Feature Importance)
+
+<img width="1236" height="673" alt="image" src="https://github.com/user-attachments/assets/f30d1c71-b5af-4aa6-9c4a-287741209d54" />
+
+##  Top Predictive Drivers (Feature Importance)
 
 The top statistical predictors identified by the tuned Random Forest model:
 
@@ -147,12 +154,12 @@ The top statistical predictors identified by the tuned Random Forest model:
 7. **InternetService: Fiber optic** (Importance: `0.0469`)
 8. **PaymentMethod: Electronic check** (Importance: `0.0435`)
 
-> ⚠️ **Predictive Association vs. Causation:**
+>  **Predictive Association vs. Causation:**
 > Feature importance scores reflect statistical association in tree split decisions, not causal levers. For example, while Month-to-month contracts strongly correlate with churn, forcing long-term commitments without addressing root customer dissatisfaction may not directly reduce customer attrition.
 
 ---
 
-## 💻 Streamlit Web Application Interface
+##  Streamlit Web Application Interface
 
 The Streamlit dashboard (`app.py`) provides five dedicated views:
 
@@ -163,8 +170,9 @@ The Streamlit dashboard (`app.py`) provides five dedicated views:
 5. **Data Explorer:** Searchable dataset table, missing values audit, interactive continuous metric distributions (histograms + boxplots), categorical churn rate cross-tabs, and a batch CSV scoring tool.
 
 ---
+<img width="1532" height="773" alt="image" src="https://github.com/user-attachments/assets/5f1f567d-a3d7-421b-853d-26ecb6363155" />
 
-## 🚀 Installation & Execution
+##  Installation & Execution
 
 ### 1. Environment Setup
 Clone the repository and install dependencies:
@@ -195,7 +203,7 @@ Open your browser at `http://localhost:8501`.
 
 ---
 
-## 📁 Repository Structure
+##  Repository Structure
 
 ```text
 SIP/
@@ -235,7 +243,7 @@ SIP/
 
 ---
 
-## 🔬 Limitations & Future Improvements
+##  Limitations & Future Improvements
 
 * **Class Imbalance:** Churn accounts for 26.5% of records. While balanced class weights and threshold tuning provide strong discrimination (0.843 AUC), incorporating SMOTE or cost-sensitive learning could further boost minority recall.
 * **Customer Lifetime Value (CLTV):** Future releases can integrate survival analysis (Kaplan-Meier, Cox Proportional Hazards) to model expected time-to-churn and estimate remaining customer lifetime value.
